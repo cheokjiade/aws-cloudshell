@@ -1,0 +1,2 @@
+#!/bin/bash
+aws ec2 describe-instances --region ap-southeast-1 --output json |  jq -r .Reservations[].Instances[].InstanceId | xargs -L 1 -I {} aws ec2 modify-instance-attribute --region ap-southeast-1 --no-disable-api-termination --instance-id {}
